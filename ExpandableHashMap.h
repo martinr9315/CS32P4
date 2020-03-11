@@ -57,7 +57,7 @@ private:
     int m_nBuckets;  //number of buckets in map
     int m_nAssoc; //number of associations in map
     double m_loadFactor; //load factor of map
-    
+public://REMOVE THIS AFTER TESTING
     unsigned int getBucketNumber(const KeyType& key) const
     {
         unsigned int hasher(const KeyType& k); // prototype
@@ -190,13 +190,13 @@ void ExpandableHashMap<KeyType, ValueType>::print() const
         {
             
             cout <<"key: "<<(*it).m_key.print()<<endl;
-            cout <<" values: "<<endl;
-            auto itV = ((*it).m_value).begin(); //loop through each pair's vector
+            cout <<" values: "<<(*it).m_value.print()<<endl;
+            /*auto itV = ((*it).m_value).begin(); //loop through each pair's vector
             while (itV != ((*it).m_value).end())
             {
                 cout <<(*itV).print()<<endl;
                 itV++;
-            }
+            }*/
             
             it++;
         }

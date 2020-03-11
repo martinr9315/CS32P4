@@ -102,7 +102,7 @@ bool StreetMapImpl::load(string mapFile)
 
 bool StreetMapImpl::getSegmentsThatStartWith(const GeoCoord& gc, vector<StreetSegment>& segs) const
 {
-    map.print();
+    //map.print();
     
     const vector<StreetSegment>* s = (map.find(gc));
     if (s->size() == 0)

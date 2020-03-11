@@ -28,6 +28,7 @@ DeliveryResult DeliveryPlannerImpl::generateDeliveryPlan(
     vector<DeliveryCommand>& commands,
     double& totalDistanceTravelled) const
 {
+    
     return NO_ROUTE;  // Delete this line and implement this function correctly
 }
 

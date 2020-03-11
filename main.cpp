@@ -17,12 +17,11 @@ int main(int argc, char *argv[])
     /*
     GeoCoord gc("34.0547000", "-118.4794734");
     GeoCoord gc2("34.0550808", "-118.4803801");
-    ExpandableHashMap<GeoCoord, int> hashMap;
-    for (int i=0; i<=4; i++)
-        hashMap.associate(gc, i);
-    hashMap.associate(gc2, 9);
-    hashMap.print();*/
-    
+    ExpandableHashMap<GeoCoord, GeoCoord> hashMap;
+    hashMap.associate(gc, gc2);
+    //hashMap.associate(gc2, 9);
+    hashMap.print();
+    */
     //street map
     //street load test
     /*StreetMap map;
@@ -44,20 +43,25 @@ int main(int argc, char *argv[])
     
     
     StreetMap map;
-    map.load("/Users/roxanemartin/Desktop/CS32/proj4/proj4/mapdatas.txt");;
+    map.load("/Users/roxanemartin/Desktop/CS32/proj4/proj4/mapdata.txt");;
     StreetMap* mapP = &map;
     PointToPointRouter p2p(mapP);
     GeoCoord A("34.0393431", "-118.4071546");
     GeoCoord B("34.0396737", "-118.4082925");
     GeoCoord C("34.0399340", " -118.4092305");
+    GeoCoord D("34.0426164", "-118.5001481");
+    GeoCoord E("34.0446433", "-118.4975646");
     vector<StreetSegment> r;
     list<StreetSegment> l;
-    double dist;
-    map.getSegmentsThatStartWith(A, r);
-    p2p.generatePointToPointRoute(A, C, l, dist);
-    
-    
-    
+    double dist=0;
+    //map.getSegmentsThatStartWith(A, r);
+    p2p.generatePointToPointRoute(D, E, l, dist);
+    auto it = l.begin();
+    while (it != l.end())
+    {
+        cout << it->print()<<endl;;
+        it++;
+    }
     
     
     /*
