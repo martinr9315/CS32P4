@@ -49,7 +49,6 @@ bool StreetMapImpl::load(string mapFile)
     ifstream infile(mapFile);    // infile is a name of our choosing
     if ( ! infile )  // check opening the file fail?
     {
-        cerr << "Error: Cannot open mapdatasmall.txt!" << endl;
         return false;
     }
     
@@ -58,7 +57,7 @@ bool StreetMapImpl::load(string mapFile)
     {
         string streetName;
         if (!getline(infile, streetName))
-            return false;
+            break;
         
         int numSegments;
         infile >> numSegments; //get number of segements for this street

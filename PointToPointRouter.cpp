@@ -57,6 +57,8 @@ DeliveryResult PointToPointRouterImpl::generatePointToPointRoute(
         list<Node> closedList;
         set<Node> openList;
         
+        route.clear();
+               
         Node startNode(start);
         openList.insert(startNode);
         
@@ -71,9 +73,6 @@ DeliveryResult PointToPointRouterImpl::generatePointToPointRoute(
             
             if (currentNode.loc.latitude == end.latitude && currentNode.loc.longitude == end.longitude) //if end has been reached
             {
-                //cout << "found path!" <<endl<<endl<<endl;; //implement trace path
-                //previousPointMap.print();
-
                 while (currentNode.loc != start)
                 {
                    //cout << "current geo: "<<currentNode.loc.print()<<endl;
@@ -113,7 +112,7 @@ DeliveryResult PointToPointRouterImpl::generatePointToPointRoute(
                     if (segs[i].end == itC->loc)
                     {
                         skip = true;
-                        break; //does this skip correctly
+                        break;
                     }//if child already in closed list, don't bother expanding
                     itC++;
                 }
@@ -121,10 +120,6 @@ DeliveryResult PointToPointRouterImpl::generatePointToPointRoute(
                 if (!skip)
                 {
                    Node child(segs[i].end); //create new child with location of end of segments
-                   //cout << "Child loc: "<<child.loc.print() <<endl;
-                   //cout << "Current loc: "<<currentNode.loc.print() <<endl;
-                   //cout << "child geo: " <<child.loc.print()<<endl;
-                   //cout << "bucket num: "<<previousPointMap.getBucketNumber(child.loc)<<endl;
                    previousPointMap.associate(child.loc, currentNode.loc);
                    child.g = currentNode.g + distanceEarthMiles(child.loc, currentNode.loc); //set child's g value to current node's g plus distance from current node to child; same as total distance from start to child
                     child.h = calculateHValue(child.loc, end); //set child's h value to euclidean distance from child to end
@@ -136,7 +131,7 @@ DeliveryResult PointToPointRouterImpl::generatePointToPointRoute(
                         if (child.loc == itO->loc && child.g>(itO->g)) //if child location already in open list and child's g is bigger than node's already in list, skip rest of loop
                         {
                             skip = true;
-                            break; //CHECK: does this continue correctly?
+                            break;
                         }
                         itO++;
                     }
@@ -146,6 +141,7 @@ DeliveryResult PointToPointRouterImpl::generatePointToPointRoute(
                 }
             }
         }
+        cout <<"no route found"<<endl;
         return NO_ROUTE;   //didn't find path
     }
 

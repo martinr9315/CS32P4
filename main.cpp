@@ -40,9 +40,46 @@ int main(int argc, char *argv[])
     //map.getSegmentsThatStartWith(gc, s);
    // cout << "size: "<<s.size()<<endl;
         //cout<<s[0].print();
+   /*StreetMap sm;
+    sm.load("/Users/roxanemartin/Desktop/CS32/proj4/proj4/maptest.txt");
+    PointToPointRouter pr(&sm);
+    GeoCoord gc1("1.0", "3.0");
+    GeoCoord gc2("4.0", "1.0");
+    list<StreetSegment> route;
+    double dist;
+    pr.generatePointToPointRoute(gc1, gc2, route, dist);
+    cout << "Distance: " << dist << endl;
+    auto it = route.begin();
+    while (it != route.end())
+    {
+        cout << (*it).print() <<"-->";
+        it++;
+    }
+    cout << endl;*/
+     
     
-    
-    StreetMap map;
+    //delivery planner test 
+    /*StreetMap sm;
+    sm.load("/Users/roxanemartin/Desktop/CS32/proj4/proj4/mapdata.txt");
+    DeliveryPlanner dp(&sm);
+    GeoCoord gc1("34.0625329", "-118.4470263");
+    GeoCoord gc2("34.0636671", "-118.4461842");
+    GeoCoord gc3("34.0614940", "-118.4411993");
+    DeliveryRequest dr1("stuff", gc2);
+    DeliveryRequest dr2("more stuff", gc3);
+    vector<DeliveryRequest> del;
+    del.push_back(dr1);
+    del.push_back(dr2);
+    vector<DeliveryCommand> com = {};
+    double dist = 0;
+    dp.generateDeliveryPlan(gc1, del, com, dist);
+    for (int i=0; i<com.size(); i++)
+    {
+        cout<< com[i].description()<<endl;
+    }
+    cout << "total distance: "<< dist<< endl;
+    */
+    /*StreetMap map;
     map.load("/Users/roxanemartin/Desktop/CS32/proj4/proj4/mapdata.txt");;
     StreetMap* mapP = &map;
     PointToPointRouter p2p(mapP);
@@ -59,12 +96,12 @@ int main(int argc, char *argv[])
     auto it = l.begin();
     while (it != l.end())
     {
-        cout << it->print()<<endl;;
+        cout << it->print()<<"-->";
         it++;
     }
     
+    */
     
-    /*
     if (argc != 3)
     {
         cout << "Usage: " << argv[0] << " mapdata.txt deliveries.txt" << endl;
@@ -109,7 +146,7 @@ int main(int argc, char *argv[])
     cout << "You are back at the depot and your deliveries are done!\n";
     cout.setf(ios::fixed);
     cout.precision(2);
-    cout << totalMiles << " miles travelled for all deliveries." << endl;*/
+    cout << totalMiles << " miles travelled for all deliveries." << endl;
 }
 
 bool loadDeliveryRequests(string deliveriesFile, GeoCoord& depot, vector<DeliveryRequest>& v)
